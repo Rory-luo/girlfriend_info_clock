@@ -86,7 +86,7 @@ def get_period_left():
 def get_today_week():
     week_list = {'1':'一', '2':'二', '3':'三', '4':'四', '5':'五', '6':'六', '7':'天'}
     today_week = datetime.today().weekday()
-    today_week = str(today_week) + 1
+    today_week = str(int(today_week) + 1)
     week_day = '星期' + week_list[today_week]
     return week_day
 

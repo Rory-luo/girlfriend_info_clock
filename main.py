@@ -95,6 +95,7 @@ def get_period_left():
     else:
         words_reply = "距离小馋猫的例假来临预计还有{0}天".format((next_month_period - nowtime).days)
         return words_reply
+    
 # def get_period_left():
 #     if period is None:
 #         print('没有设置 PERIOD')

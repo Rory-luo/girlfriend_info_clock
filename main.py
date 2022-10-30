@@ -68,7 +68,34 @@ def get_birthday_left():
 
 # 生理期倒计时
 def get_period_left():
-    return "距离小馋猫的例假来临预计还有30天"
+        if period is None:
+        print('没有设置 PERIOD')
+        return 0
+    last_month_period = datetime.strptime(str(today.year) + "-" + str(today.month - 1) + "-" + period, "%Y-%m-%d")
+    this_month_period = datetime.strptime(str(today.year) + "-" + str(today.month) + "-" + period, "%Y-%m-%d")
+    next_month_period = datetime.strptime(str(today.year) + "-" + str(today.month + 1) + "-" + period, "%Y-%m-%d")
+    # next_month_period = (datetime.strptime(str(today.year) + "-" + str(today.month) + "-" + period, "%Y-%m-%d") + timedelta(days=7))
+    interval_period = (nowtime - this_month_period).days
+    words_list = ['辛苦我的小馋猫了', '真棒，最后一天了', '抱抱我的小美女', '委屈我的小美女啦']
+    if 0 <= interval_period <= 6:
+        if interval_period == 6:
+            words_reply = "我家小美女大姨妈来了第{0}天，{1}".format(interval_period + 1, words_list[random.randint(0, 3)])
+            return words_reply
+        words_reply = "今天是小馋猫例假来的第{0}天".format(interval_period + 1)
+        return words_reply
+    elif interval_period < 0:
+        if 0 <= (nowtime - last_month_period).days <= 6:
+            if (nowtime - last_month_period).days == 6:
+                words_reply = "我家小美女大姨妈来了第{0}天，{1}".format(interval_period + 1, words_list[random.randint(0, 3)])
+                return words_reply
+            words_reply = "今天是小馋猫例假来的第{0}天".format(interval_period + 1)
+            return words_reply
+        words_reply = "距离小馋猫的例假来临预计还有{0}天".format((next_month_period - nowtime).days)
+        return words_reply
+    else:
+        words_reply = "距离小馋猫的例假来临预计还有{0}天".format((next_month_period - nowtime).days)
+        return words_reply
+# def get_period_left():
 #     if period is None:
 #         print('没有设置 PERIOD')
 #         return 0

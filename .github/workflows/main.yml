@@ -31,3 +31,4 @@ jobs:
       BIRTHDAY: ${{ secrets.BIRTHDAY }}
       CITY: ${{ secrets.CITY }}
       PERIOD: ${{ secrets.PERIOD }}
+      END_WORDS: ${{ secrets.END_WORDS }}

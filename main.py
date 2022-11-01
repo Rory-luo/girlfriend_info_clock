@@ -19,7 +19,7 @@ app_secret = os.getenv('APP_SECRET')
 
 user_ids = os.getenv('USER_ID', '').split("\n")
 template_id = os.getenv('TEMPLATE_ID')
-end_words = os.getenv('End_Words')
+end_words = os.getenv('END_WORDS')
 
 
 if app_id is None or app_secret is None:

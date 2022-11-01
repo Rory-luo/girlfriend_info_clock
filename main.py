@@ -113,12 +113,11 @@ def get_period_left():
 
 
 def get_end_words():
-    print(end_words)
-    print(type(end_words))
+    if end_words is None:
+        print('没有设置 END_WORDS')
+        return 0
     words_list = end_words.split(',')
-    print(words_list)
-    return words_list[random.randint(0,len(words_list) - 1)]
-    
+    return words_list[random.randint(0,len(words_list) - 1)]    
 
 
 # 获取今日的星期

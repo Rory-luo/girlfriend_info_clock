@@ -19,6 +19,8 @@ app_secret = os.getenv('APP_SECRET')
 
 user_ids = os.getenv('USER_ID', '').split("\n")
 template_id = os.getenv('TEMPLATE_ID')
+end_words = os.getenv('End_Words')
+
 
 if app_id is None or app_secret is None:
     print('请设置 APP_ID 和 APP_SECRET')
@@ -108,6 +110,13 @@ def get_period_left():
 #         # next_time = next_time.replace(month=next_time.month + 1)
 #         words_reply = "距离小馋猫的例假来临还有{0}天".format((next_time - today).days)
 #         return words_reply
+
+
+def get_end_words():
+    words_list = end_words.split(',')
+    print(words_list)
+    return words_list[random.randint(0,len(words_list) - 1]
+    
 
 
 # 获取今日的星期
@@ -207,6 +216,10 @@ data = {
     "words": {
         "value": get_words(),
         "color": get_random_color()
+    },
+    "end_words": {
+        "value": get_end_words(),
+#        "color": get_random_color()
     },
 }
 

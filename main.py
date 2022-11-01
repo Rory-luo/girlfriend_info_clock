@@ -114,7 +114,7 @@ def get_period_left():
 
 def get_end_words():
     print(end_words)
-    print(type(end_words)
+    print(type(end_words))
     words_list = end_words.split(',')
     print(words_list)
     return words_list[random.randint(0,len(words_list) - 1)]

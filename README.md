@@ -9,20 +9,20 @@ https://github.com/rxrw/daily_morning  (Has been disabled)
 
 2. Add these params:
  
-  1). app_id: the appid of WeChat Test Number
+    1). app_id: the appid of WeChat Test Number
   
-  2). app_secret: the appsecret of WeChat Test Number
+    2). app_secret: the appsecret of WeChat Test Number
 
-  3). birthday: the owner's birthday of host  (e.g. xx-xx) 
+    3). birthday: the owner's birthday of host  (e.g. xx-xx) 
   
-  4). city: the owner's location city of host (e.g. 北京) You'd better input Chinese
+    4). city: the owner's location city of host (e.g. 北京) You'd better input Chinese
   
-  5). period: the owner's period date of host (e.g. 19)
+    5). period: the owner's period date of host (e.g. 19)
   
-  6). start_date: the date that you both meet and together (e.g. 20xx-xx-xx)
+    6). start_date: the date that you both meet and together (e.g. 20xx-xx-xx)
   
-  7). template_id: the test number's id
+    7). template_id: the test number's id
   
-  8). user_id: Who wanna receive the message alert, must scan the QR firstly.
+    8). user_id: Who wanna receive the message alert, must scan the QR firstly.
 
 3. Then, click the "Actions" and run it

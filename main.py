@@ -216,7 +216,7 @@ data = {
     },
     "words": {
         "value": get_words(),
-        "color": get_random_color()
+#        "color": get_random_color()
     },
     "end_words": {
         "value": get_end_words(),

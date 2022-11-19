@@ -117,7 +117,9 @@ def get_end_words():
         print('没有设置 END_WORDS')
         return 0
     words_list = end_words.split(',')
-    return words_list[random.randint(0,len(words_list) - 1)]    
+    words_choose = words_list[random.randint(0,len(words_list) - 1)]
+    print(words_choose)
+    return words_choose
 
 
 # 获取今日的星期

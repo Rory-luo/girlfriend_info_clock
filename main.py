@@ -73,9 +73,17 @@ def get_period_left():
     if period is None:
         print('没有设置 PERIOD')
         return 0
-    last_month_period = datetime.strptime(str(today.year) + "-" + str(today.month - 1) + "-" + period, "%Y-%m-%d")
-    this_month_period = datetime.strptime(str(today.year) + "-" + str(today.month) + "-" + period, "%Y-%m-%d")
-    next_month_period = datetime.strptime(str(today.year) + "-" + str(today.month + 1) + "-" + period, "%Y-%m-%d")
+    if str(today.month) == str(12):
+        last_month_period = datetime.strptime(str(today.year) + "-" + str(today.month - 1) + "-" + period, "%Y-%m-%d")
+        this_month_period = datetime.strptime(str(today.year) + "-" + str(today.month) + "-" + period, "%Y-%m-%d")
+        next_month_period = datetime.strptime(str(today.year) + "-" + str(today.month - 11) + "-" + period, "%Y-%m-%d")
+    if str(today.month) == str(1):
+        last_month_period = datetime.strptime(str(today.year) + "-" + str(today.month + 11) + "-" + period, "%Y-%m-%d")
+        this_month_period = datetime.strptime(str(today.year) + "-" + str(today.month) + "-" + period, "%Y-%m-%d")
+        next_month_period = datetime.strptime(str(today.year) + "-" + str(today.month + 1) + "-" + period, "%Y-%m-%d")
+#     last_month_period = datetime.strptime(str(today.year) + "-" + str(today.month - 1) + "-" + period, "%Y-%m-%d")
+#     this_month_period = datetime.strptime(str(today.year) + "-" + str(today.month) + "-" + period, "%Y-%m-%d")
+#     next_month_period = datetime.strptime(str(today.year) + "-" + str(today.month + 1) + "-" + period, "%Y-%m-%d")
     # next_month_period = (datetime.strptime(str(today.year) + "-" + str(today.month) + "-" + period, "%Y-%m-%d") + timedelta(days=7))
     interval_period = (nowtime - this_month_period).days
     words_list = ['辛苦我的小馋猫了', '真棒，最后一天了', '抱抱我的小美女', '委屈我的小美女啦']

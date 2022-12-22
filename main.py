@@ -76,15 +76,15 @@ def get_period_left():
     if str(today.month) == str(12):
         last_month_period = datetime.strptime(str(today.year) + "-" + str(today.month - 1) + "-" + period, "%Y-%m-%d")
         this_month_period = datetime.strptime(str(today.year) + "-" + str(today.month) + "-" + period, "%Y-%m-%d")
-        next_month_period = datetime.strptime(str(today.year) + "-" + str(today.month - 11) + "-" + period, "%Y-%m-%d")
-    if str(today.month) == str(1):
-        last_month_period = datetime.strptime(str(today.year) + "-" + str(today.month + 11) + "-" + period, "%Y-%m-%d")
+        next_month_period = datetime.strptime(str(today.year + 1) + "-" + str(today.month - 11) + "-" + period, "%Y-%m-%d")
+    elif str(today.month) == str(1):
+        last_month_period = datetime.strptime(str(today.year - 1) + "-" + str(today.month + 11) + "-" + period, "%Y-%m-%d")
         this_month_period = datetime.strptime(str(today.year) + "-" + str(today.month) + "-" + period, "%Y-%m-%d")
         next_month_period = datetime.strptime(str(today.year) + "-" + str(today.month + 1) + "-" + period, "%Y-%m-%d")
-#     last_month_period = datetime.strptime(str(today.year) + "-" + str(today.month - 1) + "-" + period, "%Y-%m-%d")
-#     this_month_period = datetime.strptime(str(today.year) + "-" + str(today.month) + "-" + period, "%Y-%m-%d")
-#     next_month_period = datetime.strptime(str(today.year) + "-" + str(today.month + 1) + "-" + period, "%Y-%m-%d")
-    # next_month_period = (datetime.strptime(str(today.year) + "-" + str(today.month) + "-" + period, "%Y-%m-%d") + timedelta(days=7))
+    else:
+        last_month_period = datetime.strptime(str(today.year) + "-" + str(today.month - 1) + "-" + period, "%Y-%m-%d")
+        this_month_period = datetime.strptime(str(today.year) + "-" + str(today.month) + "-" + period, "%Y-%m-%d")
+        next_month_period = datetime.strptime(str(today.year) + "-" + str(today.month + 1) + "-" + period, "%Y-%m-%d")
     interval_period = (nowtime - this_month_period).days
     words_list = ['辛苦我的小馋猫了', '真棒，最后一天了', '抱抱我的小美女', '委屈我的小美女啦']
     if 0 <= interval_period <= 6:

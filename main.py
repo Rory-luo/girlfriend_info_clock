@@ -49,7 +49,7 @@ def get_weather():
     # return weather_info
 
     # # Use new ways to get the weather infomations}
-    weather_styles = {'Clear': '晴朗', "Clouds": '多云', "Rain": '小雨', "Drizzle": '毛毛雨', "Snow": '雪', "Mist": '薄雾', "Haze": '霾', "Fog": '雾', "Thunderstorm": '雷暴', "Smoke": '大雾', "Dust": '扬尘', "Sand": '沙尘暴', "Ash": '火山灰', "Squall": '阵风', "Tornado": '龙卷风'
+    weather_styles = {'Clear': '晴朗', "Clouds": '多云', "Rain": '小雨', "Drizzle": '毛毛雨', "Snow": '雪', "Mist": '薄雾', "Haze": '霾', "Fog": '雾', "Thunderstorm": '雷暴', "Smoke": '大雾', "Dust": '扬尘', "Sand": '沙尘暴', "Ash": '火山灰', "Squall": '阵风', "Tornado": '龙卷风'}
     url = "https://api.openweathermap.org/data/2.5/weather"
     params = {
         "q": city,

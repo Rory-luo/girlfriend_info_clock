@@ -69,7 +69,8 @@ def get_weather():
             lowest = data['main']['temp_min']
             airQuality = '优'
             airData = data['main']['pressure']
-            return {'weather': weather, 'temperature': temperature, 'humidity': humidity, 'high': highest, 'low': lowest, 'airQuality': airQuality, 'airData': airData}
+            wind = data['wind']['deg']
+            return {'weather': weather, 'temperature': temperature, 'humidity': humidity, 'high': highest, 'low': lowest, 'airQuality': airQuality, 'airData': airData, 'wind': wind}
         elif response.status_code == 401:
             print("API key is invalid or unauthorized. Please check your API key.")
             return exit(502)

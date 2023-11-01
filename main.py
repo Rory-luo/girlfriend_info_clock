@@ -40,12 +40,45 @@ def get_weather():
     if city is None:
         print('请设置城市')
         return None
-    url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
-    result = requests.get(url).json()
-    if result is None:
-        return None
-    weather_info = result['data']['list'][0]
-    return weather_info
+    # # The way to access the infos has beed forbbiden
+    # url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
+    # result = requests.get(url).json()
+    # if result is None:
+        # return None
+    # weather_info = result['data']['list'][0]
+    # return weather_info
+
+    # # Use new ways to get the weather infomations}
+    weather_styles = {'Clear': '晴朗', "Clouds": '多云', "Rain": '小雨', "Drizzle": '毛毛雨', "Snow": '雪', "Mist": '薄雾', "Haze": '霾', "Fog": '雾', "Thunderstorm": '雷暴', "Smoke": '大雾', "Dust": '扬尘', "Sand": '沙尘暴', "Ash": '火山灰', "Squall": '阵风', "Tornado": '龙卷风'
+    url = "https://api.openweathermap.org/data/2.5/weather"
+    params = {
+        "q": city,
+        "appid": "eaacc6730f1aabf5582aee1fe1472645",
+        "units": "metric"
+    }
+    try:
+        response = requests.get(base_url, params=params)
+
+        if response.status_code == 200:
+            data = response.json()
+            temperature = data["main"]["temp"]
+            description = data["weather"][0]["main"]
+            weather = weather_styles[description]
+            humidity = data['main']['humidity']
+            highest = data['main']['temp_max']
+            lowest = data['main']['temp_min']
+            airQuality = '优'
+            airData = data['main']['pressure']
+            return {'weather': weather, 'humidity': humidity, 'highest': highest, 'lowest': lowest, 'airQuality': airQuality, 'airData': airData}
+        elif response.status_code == 401:
+            print("API key is invalid or unauthorized. Please check your API key.")
+            return exit(502)
+        else:
+            print(f"Failed to retrieve weather data. Status code: {response.status_code}")
+            return exit(502)
+    except requests.exceptions.RequestException as e:
+        print(f"An error occurred while making the request: {e}")
+        return exit(502)
 
 
 # 纪念日正数
@@ -86,24 +119,31 @@ def get_period_left():
         this_month_period = datetime.strptime(str(today.year) + "-" + str(today.month) + "-" + period, "%Y-%m-%d")
         next_month_period = datetime.strptime(str(today.year) + "-" + str(today.month + 1) + "-" + period, "%Y-%m-%d")
     interval_period = (nowtime - this_month_period).days
-    words_list = ['辛苦我的小馋猫了', '真棒，最后一天了', '抱抱我的小美女', '委屈我的小美女啦']
+    words_list = ['辛苦我的瑶瑶了', '真棒，最后一天了', '抱抱瑶瑶~', '委屈瑶瑶啦']
+    # words_list = ['辛苦我的小馋猫了', '真棒，最后一天了', '抱抱我的小美女', '委屈我的小美女啦']
     if 0 <= interval_period <= 6:
         if interval_period == 6:
-            words_reply = "我家小美女大姨妈来了第{0}天，{1}".format(interval_period + 1, words_list[random.randint(0, 3)])
+            words_reply = "瑶瑶例假来了第{0}天，{1}".format(interval_period + 1, words_list[random.randint(0, 3)])
+            # words_reply = "我家小美女大姨妈来了第{0}天，{1}".format(interval_period + 1, words_list[random.randint(0, 3)])
             return words_reply
-        words_reply = "今天是小馋猫例假来的第{0}天".format(interval_period + 1)
+        words_reply = "今天是瑶瑶例假来的第{0}天".format(interval_period + 1)
+        # words_reply = "今天是小馋猫例假来的第{0}天".format(interval_period + 1)
         return words_reply
     elif interval_period < 0:
         if 0 <= (nowtime - last_month_period).days <= 6:
             if (nowtime - last_month_period).days == 6:
-                words_reply = "我家小美女大姨妈来了第{0}天，{1}".format(interval_period + 1, words_list[random.randint(0, 3)])
+                words_reply = "瑶瑶大姨妈来了第{0}天，{1}".format(interval_period + 1, words_list[random.randint(0, 3)])
+                # words_reply = "我家小美女大姨妈来了第{0}天，{1}".format(interval_period + 1, words_list[random.randint(0, 3)])
                 return words_reply
             words_reply = "今天是小馋猫例假来的第{0}天".format(interval_period + 1)
+            # words_reply = "今天是小馋猫例假来的第{0}天".format(interval_period + 1)
             return words_reply
-        words_reply = "报告，小馋猫的大姨妈预计还有{0}天到".format((this_month_period - nowtime).days + 1)
+        words_reply = "报告，瑶瑶的例假预计还有{0}天到".format((this_month_period - nowtime).days + 1)
+        # words_reply = "报告，小馋猫的大姨妈预计还有{0}天到".format((this_month_period - nowtime).days + 1)
         return words_reply
     else:
-        words_reply = "报告小馋猫，我家小美女的大姨妈预计还有{0}天到".format((next_month_period - nowtime).days + 1)
+        words_reply = "报告瑶瑶，大姨妈预计还有{0}天到".format((next_month_period - nowtime).days + 1)
+        # words_reply = "报告小馋猫，我家小美女的大姨妈预计还有{0}天到".format((next_month_period - nowtime).days + 1)
         return words_reply
 # def get_period_left():
 #     if period is None:

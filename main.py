@@ -215,55 +215,55 @@ data = {
     },
     "date": {
         "value": today.strftime('%Y年%m月%d日'),
-#         "color": get_random_color()
+        "color": get_random_color()
     },
     "week_day": {
         "value": get_today_week(),
-#         "color": get_random_color()
+        "color": get_random_color()
     },
     "weather": {
         "value": weather['weather'],
-#         "color": get_random_color()
+        "color": get_random_color()
     },
     "temperature": {
         "value": math.floor(weather['temperature']),
-#         "color": get_random_color()
+        "color": get_random_color()
     },
     'humidity': {
         "value": weather['humidity'],
-#         "color": get_random_color()
+        "color": get_random_color()
     },
     "highest": {
         "value": math.floor(weather['high']),
-#         "color": get_random_color()
+         "color": get_random_color()
     },
     "lowest": {
         "value": math.floor(weather['low']),
-#         "color": get_random_color()
+         "color": get_random_color()
     },
     "air_quality": {
         "value": weather['airQuality'],
-#         "color": get_random_color()
+        "color": get_random_color()
     },
     "air_data": {
         "value": weather['airData'],
-#         "color": get_random_color()
+        "color": get_random_color()
     },
     "wind": {
         "value": weather['wind'],
-#         "color": get_random_color()
+        "color": get_random_color()
     },
     "love_days": {
         "value": get_memorial_days_count(),
-#         "color": get_random_color()
+        "color": get_random_color()
     },
     "birthday_left": {
         "value": get_birthday_left(),
-#         "color": get_random_color()
+        "color": get_random_color()
     },
     "period":{
         "value": get_period_left(),
-#         "color": get_random_color()
+        "color": get_random_color()
     },
     "words": {
         "value": get_words(),

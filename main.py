@@ -136,7 +136,7 @@ def get_period_left():
                 words_reply = "瑶瑶大姨妈来了第{0}天，{1}".format(interval_period + 1, words_list[random.randint(0, 3)])
                 # words_reply = "我家小美女大姨妈来了第{0}天，{1}".format(interval_period + 1, words_list[random.randint(0, 3)])
                 return words_reply
-            words_reply = "今天是小馋猫例假来的第{0}天".format(interval_period + 1)
+            words_reply = "今天是瑶瑶例假来的第{0}天".format(interval_period + 1)
             # words_reply = "今天是小馋猫例假来的第{0}天".format(interval_period + 1)
             return words_reply
         words_reply = "报告，瑶瑶的例假预计还有{0}天到".format((this_month_period - nowtime).days + 1)
@@ -214,7 +214,7 @@ data = {
         "color": get_random_color()
     },
     "date": {
-        "value": today.strftime('%Y年%m月%d日'),
+        "value": today.strftime('%Y年%m月%d日 %H:%M:%S'),
         "color": get_random_color()
     },
     "week_day": {

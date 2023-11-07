@@ -25,7 +25,7 @@ https://github.com/rxrw/daily_morning  (Has been disabled)
   
     8). template_id: the test number's id.
    
-    9). user_id: Who wanna receive the message alert, must scan the QR firstly. (The url is: ![link](https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/index))
+    9). user_id: Who wanna receive the message alert, must scan the QR firstly. (The url is: [微信测试平台](https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/index))
 
    ![image](https://github.com/Rory-luo/girlfriend_info_clock/assets/55289804/ada746c9-df14-48bb-9fc6-aef0f285f373)
 

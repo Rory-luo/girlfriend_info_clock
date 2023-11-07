@@ -87,9 +87,8 @@ def get_weather():
 # 获取当前地区的空气质量数值
 def get_air_quality():
     # 使用AirVisual API获取空气质量，也可以获取当地的天气情况等
-    print(city_location_dict)
     weather_api_key = 'b9d8a3e0-aca4-4915-93e0-687b0ab35cd0'     # It'll expire on Nov 7, 2024, please goto https://dashboard.iqair.com/personal/api-keys to create a new from then on
-    api_url = f"https://api.airvisual.com/v2/nearest_city?lat={city_location_dict[city]['lat']}&lon={city_location_dict[city]['lon']}&key={weather_api_key}"
+    api_url = f"https://api.airvisual.com/v2/nearest_city?lat={city_location_dict[0][city]['lat']}&lon={city_location_dict[0][city]['lon']}&key={weather_api_key}"
 
     try:
         response = requests.get(api_url)

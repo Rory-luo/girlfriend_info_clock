@@ -20,6 +20,7 @@ app_secret = os.getenv('APP_SECRET')
 
 user_ids = os.getenv('USER_ID', '').split("\n")
 template_id = os.getenv('TEMPLATE_ID')
+after_template_id = os.getenv('AFTER_TEMPLATE_ID')
 end_words = os.getenv('END_WORDS')
 
 
@@ -319,11 +320,19 @@ data = {
 }
 
 if __name__ == '__main__':
+    now_clock = datetime.now().hour
     count = 0
     try:
         for user_id in user_ids:
-            res = wm.send_template(user_id, template_id, data)
-            count += 1
+            if 0 <= int(now_clock) <= 9:
+                res = wm.send_template(user_id, template_id, data)
+                count += 1
+            elif 9 < int(now_clock) <= 18:
+                res = wm.send_template(user_id, after_template_id, data)
+                count += 1
+            else:
+                res = wm.send_template(user_id, after_template_id, data)
+                count += 1
     except WeChatClientException as e:
         print('微信端返回错误：%s。错误代码：%d' % (e.errmsg, e.errcode))
         exit(502)

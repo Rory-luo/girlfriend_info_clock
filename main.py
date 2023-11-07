@@ -11,6 +11,7 @@ today = datetime.strptime(str(nowtime.date()), "%Y-%m-%d")  # 今天的日期
 
 start_date = os.getenv('START_DATE')
 city = os.getenv('CITY')
+city_location_dict = os.getenv('CITY_LOCATION_DICT')
 birthday = os.getenv('BIRTHDAY')
 period = os.getenv('PERIOD')
 
@@ -67,8 +68,8 @@ def get_weather():
             humidity = data['main']['humidity']
             highest = data['main']['temp_max']
             lowest = data['main']['temp_min']
-            airQuality = '优'
-            airData = data['main']['pressure']
+            airQuality = evaluate_air_quality()
+            airData = get_air_quality()
             wind = data['wind']['deg']
             return {'weather': weather, 'temperature': temperature, 'humidity': humidity, 'high': highest, 'low': lowest, 'airQuality': airQuality, 'airData': airData, 'wind': wind}
         elif response.status_code == 401:
@@ -80,6 +81,47 @@ def get_weather():
     except requests.exceptions.RequestException as e:
         print(f"An error occurred while making the request: {e}")
         return exit(502)
+
+
+# 获取当前地区的空气质量数值
+def get_air_quality():
+    # 使用AirVisual API获取空气质量，也可以获取当地的天气情况等
+    weather_api_key = 'b9d8a3e0-aca4-4915-93e0-687b0ab35cd0'     # It'll expire on Nov 7, 2024, please goto https://dashboard.iqair.com/personal/api-keys to create a new from then on
+    api_url = f"https://api.airvisual.com/v2/nearest_city?lat={city_location_dict[city]['lat']}&lon={city_location_dict[city]['lon']}&key={weather_api_key}"
+
+    try:
+        response = requests.get(api_url)
+        data = response.json()
+
+        if response.status_code == 200:
+            air_quality = data['data']['current']['pollution']['aqius']
+            return air_quality
+        else:
+            print(f"无法获取空气质量信息。")
+            return None
+    except Exception as e:
+        print(f"发生错误: {str(e)}")
+        return None
+
+
+# 判断空气质量的优良状态
+def evaluate_air_quality():
+    aqi_value = get_air_quality()
+    if aqi_value is None:
+        exit(422)
+    else:
+        if 0 <= aqi_value <= 50:
+            return "优"
+        elif 51 <= aqi_value <= 100:
+            return "良"
+        elif 101 <= aqi_value <= 150:
+            return "一般"
+        elif 151 <= aqi_value <= 200:
+            return "较差"
+        elif 201 <= aqi_value <= 300:
+            return "很差"
+        else:
+            return "无法评估"
 
 
 # 纪念日正数

@@ -30,5 +30,6 @@ jobs:
       START_DATE: ${{ secrets.START_DATE }}
       BIRTHDAY: ${{ secrets.BIRTHDAY }}
       CITY: ${{ secrets.CITY }}
+      CITY_LOCATION_DICT: ${{ secrets.CITY_LOCATION_DICT }}
       PERIOD: ${{ secrets.PERIOD }}
       END_WORDS: ${{ secrets.END_WORDS }}

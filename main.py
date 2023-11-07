@@ -5,6 +5,7 @@ from wechatpy.client.api import WeChatMessage
 import requests
 import os
 import random
+import json
 
 nowtime = datetime.utcnow() + timedelta(hours=8)  # 东八区时间
 today = datetime.strptime(str(nowtime.date()), "%Y-%m-%d")  # 今天的日期
@@ -12,6 +13,7 @@ today = datetime.strptime(str(nowtime.date()), "%Y-%m-%d")  # 今天的日期
 start_date = os.getenv('START_DATE')
 city = os.getenv('CITY')
 city_location_dict = os.getenv('CITY_LOCATION_DICT')
+city_location_dict = json.loads(city_location_dict)
 birthday = os.getenv('BIRTHDAY')
 period = os.getenv('PERIOD')
 
@@ -88,7 +90,7 @@ def get_weather():
 def get_air_quality():
     # 使用AirVisual API获取空气质量，也可以获取当地的天气情况等
     weather_api_key = 'b9d8a3e0-aca4-4915-93e0-687b0ab35cd0'     # It'll expire on Nov 7, 2024, please goto https://dashboard.iqair.com/personal/api-keys to create a new from then on
-    api_url = f"https://api.airvisual.com/v2/nearest_city?lat={city_location_dict[0][city]['lat']}&lon={city_location_dict[0][city]['lon']}&key={weather_api_key}"
+    api_url = f"https://api.airvisual.com/v2/nearest_city?lat={city_location_dict[city]['lat']}&lon={city_location_dict[city]['lon']}&key={weather_api_key}"
 
     try:
         response = requests.get(api_url)

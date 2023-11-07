@@ -17,12 +17,17 @@ https://github.com/rxrw/daily_morning  (Has been disabled)
   
     4). city: the owner's location city of host (e.g. 北京) You'd better input Chinese
   
-    5). period: the owner's period date of host (e.g. 19)
+    5). city_location_dict: the latitude and longitude's dictionary of the city (e.g. {'北京': {'lat': 39.9042， 'lon': 116.4074}, '雄安': {'lat': 38.6, 'lon': 116}})
   
-    6). start_date: the date that you both meet and together (e.g. 20xx-xx-xx)
+    6). period: the owner's period date of host (e.g. 19).
   
-    7). template_id: the test number's id
+    7). start_date: the date that you both meet and together (e.g. 20xx-xx-xx).
   
-    8). user_id: Who wanna receive the message alert, must scan the QR firstly.
+    8). template_id: the test number's id.
+   
+    9). user_id: Who wanna receive the message alert, must scan the QR firstly. (The url is: ![link](https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/index))
 
-3. Then, click the "Actions" and run it
+   ![image](https://github.com/Rory-luo/girlfriend_info_clock/assets/55289804/ada746c9-df14-48bb-9fc6-aef0f285f373)
+
+
+4. Then, click the "Actions" and run it

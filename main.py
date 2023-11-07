@@ -39,6 +39,10 @@ if template_id is None:
     print('请设置 TEMPLATE_ID')
     exit(422)
 
+if after_template_id is None:
+    print('请设置 AFTER_TEMPLATE_ID')
+    exit(422)
+
 
 # weather 直接返回对象，在使用的地方用字段进行调用。
 def get_weather():
@@ -323,11 +327,10 @@ data = {
 }
 
 if __name__ == '__main__':
-    now_clock = datetime.now().hour
     count = 0
     try:
         for user_id in user_ids:
-            if 0 <= int(now_clock) <= 9:
+            if 0 <= int(nowtime.hour) <= 9:
                 res = wm.send_template(user_id, template_id, data)
                 count += 1
             elif 9 < int(now_clock) <= 18:

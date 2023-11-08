@@ -129,9 +129,9 @@ def evaluate_uv_level(uv_value, temperature_value):
             return '1级，偏低，气温也稍微低，适合外出'
         elif 3 <= uv_value < 6:
             return '2级，中等，注意减少阳光直晒*'
-        elif 6 <= uv_level < 8:
+        elif 6 <= uv_value < 8:
             return '3级，高, 30~60秒便可晒红皮肤。外出请采取防护措施'
-        elif 8 <= uv_level < 11:
+        elif 8 <= uv_value < 11:
             return '4级，甚高，只要30秒左右时间便可晒红皮肤，中午前后宜减少外出'
         else:
             return '5级，极高，不到20秒便可晒红皮肤，一般人都应避免外出，或采取特殊的防护'

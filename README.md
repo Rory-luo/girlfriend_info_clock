@@ -13,20 +13,24 @@ https://github.com/rxrw/daily_morning  (Has been disabled)
   
     2). app_secret: the appsecret of WeChat Test Number.
 
-    3). template_id: the test number's id.  (The three params' url is: [微信测试平台](https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/index))
+    3). template_id: the test number's id.  
+
+    4). user_id: Who wanna receive the message alert, must scan the QR firstly. (The four params' url is: [微信测试平台](https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/index))
 
    ![image](https://github.com/Rory-luo/girlfriend_info_clock/assets/55289804/ada746c9-df14-48bb-9fc6-aef0f285f373)
+![image](https://github.com/Rory-luo/girlfriend_info_clock/assets/55289804/1f9852e3-db34-4028-b1f0-997944cf012b)
 
-    4). birthday: the owner's birthday of host  (e.g. xx-xx) 
+
+    5). birthday: the owner's birthday of host  (e.g. xx-xx) 
   
-    5). city: the owner's location city of host (e.g. 北京) You'd better input Chinese
+    6). city: the owner's location city of host (e.g. 北京) You'd better input Chinese
   
-    6). city_location_dict: the latitude and longitude's dictionary of the city (e.g. {'北京': {'lat': 39.9042， 'lon': 116.4074}, '雄安': {'lat': 38.6, 'lon': 116}})
+    7). city_location_dict: the latitude and longitude's dictionary of the city (e.g. {'北京': {'lat': 39.9042， 'lon': 116.4074}, '雄安': {'lat': 38.6, 'lon': 116}})
   
-    7). period: the owner's period date of host (e.g. 19).
+    8). period: the owner's period date of host (e.g. 19).
   
-    8). start_date: the date that you both meet and together (e.g. 20xx-xx-xx). 
+    9). start_date: the date that you both meet and together (e.g. 20xx-xx-xx). 
    
-    9). user_id: Who wanna receive the message alert, must scan the QR firstly. 
+    10). uv_key: the key of openuv, the url is [OpenUV](https://www.openuv.io/dashboard)
 
 4. Then, click the "Actions" and run it

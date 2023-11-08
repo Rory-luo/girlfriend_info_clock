@@ -333,7 +333,7 @@ if __name__ == '__main__':
             if 0 <= int(nowtime.hour) <= 9:
                 res = wm.send_template(user_id, template_id, data)
                 count += 1
-            elif 9 < int(now_clock) <= 18:
+            elif 9 < int(nowtime.hour) <= 18:
                 res = wm.send_template(user_id, after_template_id, data)
                 count += 1
             else:

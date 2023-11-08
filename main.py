@@ -15,6 +15,7 @@ city = os.getenv('CITY')
 city_location_dict = os.getenv('CITY_LOCATION_DICT')
 city_location_dict = city_location_dict.replace("'", "\"")  # 将单引号替换为双引号
 city_location_dict = json.loads(city_location_dict)
+uv_key = os.getenv('UV_KEY')
 birthday = os.getenv('BIRTHDAY')
 period = os.getenv('PERIOD')
 
@@ -79,7 +80,8 @@ def get_weather():
             airQuality = evaluate_air_quality()
             airData = get_air_quality()
             wind = data['wind']['deg']
-            return {'weather': weather, 'temperature': temperature, 'humidity': humidity, 'high': highest, 'low': lowest, 'airQuality': airQuality, 'airData': airData, 'wind': wind}
+            uv_value = evaluate_uv_level(get_uv_index(), temperature)
+            return {'weather': weather, 'temperature': temperature, 'humidity': humidity, 'high': highest, 'low': lowest, 'airQuality': airQuality, 'airData': airData, 'wind': wind, 'uv': uv_value}
         elif response.status_code == 401:
             print("API key is invalid or unauthorized. Please check your API key.")
             return exit(502)
@@ -90,7 +92,51 @@ def get_weather():
         print(f"An error occurred while making the request: {e}")
         return exit(502)
 
+# 获取当前地区的紫外线强度
+def get_uv_index():
+    base_url = "https://api.openuv.io/api/v1/uv"            # The url is used to get the UV value
+    headers = {
+        "x-access-token": uv_key                            # The key is from the openuv.io
+    }
+    params = {
+        "lat": city_location_dict[city]['lat'],
+        "lng": city_location_dict[city]['lon']
+    }
 
+    try:
+        response = requests.get(base_url, headers=headers, params=params)
+        data = response.json()
+
+        if response.status_code == 200:
+            uv_index = data["result"]["uv"]
+            return uv_index
+        else:
+            print(f"无法获取紫外线强度信息。")
+            exit(422)
+    except Exception as e:
+        print(f"发生错误: {str(e)}")
+        exit(422)
+
+
+# 判断紫外线的强度等级
+def evaluate_uv_level(uv_value, temperature_value):
+    if uv_value is None or temperature_value is None:
+        exit(422)
+    else:
+        if 0 <= uv_value < 3 and temperature_value => 15:
+            return '1级，偏低，但是气温稍高，注意长时间外出的防晒工作哦~'
+        elif 0 <= uv_value < 3 and temperature_value < 15:
+            return '1级，偏低，气温也稍微低，适合外出'
+        elif 3 <= uv_value < 6:
+            return '2级，中等，注意减少阳光直晒*'
+        elif 6 <= uv_level < 8:
+            return '3级，高, 30~60秒便可晒红皮肤。外出请采取防护措施'
+        elif 8 <= uv_level < 11:
+            return '4级，甚高，只要30秒左右时间便可晒红皮肤，中午前后宜减少外出'
+        else:
+            return '5级，极高，不到20秒便可晒红皮肤，一般人都应避免外出，或采取特殊的防护'
+
+            
 # 获取当前地区的空气质量数值
 def get_air_quality():
     # 使用AirVisual API获取空气质量，也可以获取当地的天气情况等
@@ -304,6 +350,10 @@ data = {
         "value": weather['wind'],
         "color": get_random_color()
     },
+    "uv": {
+        "value": weather['uv'],
+        "color": get_random_color()
+    },
     "love_days": {
         "value": get_memorial_days_count(),
         "color": get_random_color()
@@ -330,10 +380,10 @@ if __name__ == '__main__':
     count = 0
     try:
         for user_id in user_ids:
-            if 0 <= int(nowtime.hour) <= 9:
+            if 0 <= int(nowtime.hour) < 12:
                 res = wm.send_template(user_id, template_id, data)
                 count += 1
-            elif 9 < int(nowtime.hour) <= 18:
+            elif 12 < int(nowtime.hour) <= 18:
                 res = wm.send_template(user_id, after_template_id, data)
                 count += 1
             else:

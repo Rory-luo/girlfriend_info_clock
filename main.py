@@ -123,7 +123,7 @@ def evaluate_uv_level(uv_value, temperature_value):
     if uv_value is None or temperature_value is None:
         exit(422)
     else:
-        if 0 <= uv_value < 3 and temperature_value => 15:
+        if 0 <= uv_value < 3 and temperature_value >= 15:
             return '1级，偏低，但是气温稍高，注意长时间外出的防晒工作哦~'
         elif 0 <= uv_value < 3 and temperature_value < 15:
             return '1级，偏低，气温也稍微低，适合外出'

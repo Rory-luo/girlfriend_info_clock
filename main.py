@@ -265,7 +265,7 @@ data = {
     },
     "date": {
         # "value": today.strftime('%Y年%m月%d日'),
-        "value": datetime.now().strftime('%Y年%m月%d日 %H:%M:%S'),
+        "value": nowtime.strftime('%Y年%m月%d日 %H:%M:%S'),
         "color": get_random_color()
     },
     "week_day": {

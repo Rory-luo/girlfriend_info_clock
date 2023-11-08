@@ -34,3 +34,5 @@ jobs:
       CITY_LOCATION_DICT: ${{ secrets.CITY_LOCATION_DICT }}
       PERIOD: ${{ secrets.PERIOD }}
       END_WORDS: ${{ secrets.END_WORDS }}
+      UV_KEY: ${{ secrets.UV_KEY }}
+      
